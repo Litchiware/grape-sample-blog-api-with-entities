@@ -97,7 +97,7 @@ module Blog
         @post = Post.find(params[:id])
         @comment = Comment.new
         @comment.name = params[:name] if params[:name]
-        @comment.name = params[:body] if params[:body]
+        @comment.body = params[:body] if params[:body]
         @post.comments << @comment
         
         status 201
@@ -138,6 +138,7 @@ module Blog
         @comment = Comment.find(params[:id])
         @comment.name = params[:name] if params[:name]
         @comment.body = params[:body] if params[:body]
+        @comment.save
         
         present @comment, with: Blog::Entities::Comment
       end
